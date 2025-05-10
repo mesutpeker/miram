@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+    <title>Örüntü Oyunu</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Örüntü Oyunu</h1>
+            <div class="score-container">
+                <span>Puan: <span id="score">0</span></span>
+                <span>Soru: <span id="questionNumber">1</span>/50</span>
+            </div>
+        </header>
+
+        <div class="game-container">
+            <div id="question-container">
+                <p id="question-text">Örüntüyü tamamla:</p>
+                <div id="pattern-display"></div>
+                <div id="options-container"></div>
+            </div>
+            
+            <div id="result-message"></div>
+        </div>
+        
+        <div id="game-over" style="display: none;">
+            <h2>Tebrikler!</h2>
+            <p>Oyunu tamamladın!</p>
+            <p>Toplam puanın: <span id="final-score">0</span></p>
+            <button id="restart-button">Yeniden Başla</button>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html> 
