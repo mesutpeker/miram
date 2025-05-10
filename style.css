@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-family: 'Quicksand', 'Arial', sans-serif;
     -webkit-tap-highlight-color: transparent; /* Safari için dokunma vurgusunu kaldırır */
     -webkit-touch-callout: none; /* Safari için uzun dokunuşta menüyü engeller */
     -webkit-user-select: none; /* Safari için metin seçimini engeller */
@@ -40,10 +40,12 @@ header {
 }
 
 h1 {
+    font-family: 'Baloo 2', cursive;
     color: #ff6b6b;
-    font-size: 2.2rem;
+    font-size: 2.4rem;
     margin-bottom: 15px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    font-weight: 700;
 }
 
 .score-container {
@@ -54,7 +56,7 @@ h1 {
     background-color: #f9f9f9;
     padding: 12px;
     border-radius: 10px;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 .game-container {
@@ -65,11 +67,12 @@ h1 {
 }
 
 #question-text {
-    font-size: 1.5rem;
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.6rem;
     color: #333;
     margin-bottom: 15px;
     text-align: center;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 #pattern-display {
@@ -88,6 +91,7 @@ h1 {
     justify-content: center;
     align-items: center;
     font-size: 2rem;
+    font-weight: 600;
     border-radius: 15px;
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -103,6 +107,8 @@ h1 {
     border: 3px dashed #ff9800;
     cursor: pointer;
     position: relative;
+    font-family: 'Baloo 2', cursive;
+    font-size: 2.2rem;
 }
 
 .pattern-item.question-mark::after {
@@ -111,10 +117,11 @@ h1 {
     bottom: -25px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     color: #ff9800;
     white-space: nowrap;
     font-weight: bold;
+    font-family: 'Quicksand', sans-serif;
 }
 
 .pattern-item.question-mark:hover {
@@ -148,6 +155,7 @@ h1 {
     justify-content: center;
     align-items: center;
     font-size: 2rem;
+    font-weight: 600;
     border-radius: 15px;
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -165,10 +173,11 @@ h1 {
     bottom: -20px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     color: #555;
     opacity: 0.7;
     white-space: nowrap;
+    font-family: 'Quicksand', sans-serif;
 }
 
 .option:hover {
@@ -207,6 +216,7 @@ h1 {
 }
 
 #result-message {
+    font-family: 'Baloo 2', cursive;
     text-align: center;
     font-size: 1.4rem;
     margin: 15px 0;
@@ -214,7 +224,7 @@ h1 {
     padding: 10px;
     border-radius: 15px;
     transition: all 0.3s;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 .correct {
@@ -228,8 +238,9 @@ h1 {
 }
 
 button {
+    font-family: 'Baloo 2', cursive;
     padding: 15px 30px;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     border: none;
     border-radius: 30px;
     cursor: pointer;
@@ -242,7 +253,7 @@ button {
 #restart-button {
     background-color: #ff9800;
     color: white;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     padding: 18px 36px;
     font-weight: bold;
 }
@@ -261,18 +272,22 @@ button:active {
 }
 
 #game-over h2 {
+    font-family: 'Baloo 2', cursive;
     color: #ff6b6b;
-    font-size: 2.4rem;
+    font-size: 2.5rem;
     margin-bottom: 20px;
+    font-weight: 700;
 }
 
 #game-over p {
     font-size: 1.5rem;
     margin-bottom: 15px;
     color: #555;
+    font-weight: 500;
 }
 
 #final-score {
+    font-family: 'Baloo 2', cursive;
     font-weight: bold;
     color: #4caf50;
     font-size: 1.8rem;
@@ -343,12 +358,12 @@ button:active {
     
     .pattern-item.question-mark::after {
         bottom: -20px;
-        font-size: 0.7rem;
+        font-size: 0.8rem;
     }
     
     .option::after {
         bottom: -18px;
-        font-size: 0.7rem;
+        font-size: 0.8rem;
     }
 }
 
