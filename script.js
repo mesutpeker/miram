@@ -9,6 +9,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const finalScoreElement = document.getElementById('final-score');
     const restartButton = document.getElementById('restart-button');
     const questionContainer = document.getElementById('question-container');
+    
+    // Ses elementleri
+    const correctSound = document.getElementById('correct-sound');
+    const wrongSound = document.getElementById('wrong-sound');
+    const backgroundMusic = document.getElementById('background-music');
+    const toggleSoundButton = document.getElementById('toggle-sound');
+    const soundIcon = document.getElementById('sound-icon');
+    
+    // Ses ayarları
+    let isSoundOn = true;
 
     // Oyun değişkenleri
     let currentQuestion = 0;
@@ -18,6 +28,99 @@ document.addEventListener('DOMContentLoaded', () => {
     let questionSlot = null;
     let feedbackTimeout = null;
     let isProcessingTouch = false; // Dokunma işlemi kontrolü için
+
+    // Ses kontrolü
+    function toggleSound() {
+        isSoundOn = !isSoundOn;
+        
+        if (isSoundOn) {
+            soundIcon.textContent = '🔊';
+            try {
+                backgroundMusic.play().catch(err => console.log('Müzik çalma hatası:', err));
+            } catch (error) {
+                console.log('Müzik çalma hatası:', error);
+            }
+        } else {
+            soundIcon.textContent = '🔇';
+            try {
+                backgroundMusic.pause();
+            } catch (error) {
+                console.log('Müzik durdurma hatası:', error);
+            }
+        }
+    }
+    
+    // Ses düğmesine tıklama olayı
+    toggleSoundButton.addEventListener('click', toggleSound);
+    
+    // Ses çalma fonksiyonu
+    function playSound(sound) {
+        if (isSoundOn && sound) {
+            try {
+                sound.currentTime = 0;
+                sound.play().catch(err => console.log('Ses çalma hatası:', err));
+            } catch (error) {
+                console.log('Ses çalma hatası:', error);
+            }
+        }
+    }
+    
+    // Arkaplan müziğini başlat
+    function startBackgroundMusic() {
+        if (isSoundOn && backgroundMusic) {
+            try {
+                backgroundMusic.volume = 0.3; // Ses seviyesini ayarla
+                backgroundMusic.play().catch(error => {
+                    console.log("Otomatik müzik çalma engellendi:", error);
+                    // Kullanıcı etkileşimi olmadan müzik çalınamayabilir
+                });
+            } catch (error) {
+                console.log('Müzik başlatma hatası:', error);
+            }
+        }
+    }
+    
+    // Konfeti efekti oluştur
+    function createConfetti() {
+        const confettiCount = 50;
+        const container = document.querySelector('.game-container');
+        
+        // Önceki konfetileri temizle
+        const oldConfetti = document.querySelectorAll('.confetti');
+        oldConfetti.forEach(item => item.remove());
+        
+        for (let i = 0; i < confettiCount; i++) {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            
+            // Rastgele pozisyon
+            const left = Math.random() * 100;
+            const delay = Math.random() * 0.5;
+            
+            confetti.style.left = `${left}%`;
+            confetti.style.animationDelay = `${delay}s`;
+            confetti.style.webkitAnimationDelay = `${delay}s`;
+            
+            // Rastgele şekil
+            if (Math.random() > 0.5) {
+                confetti.style.borderRadius = '50%';
+            } else if (Math.random() > 0.5) {
+                confetti.style.width = '5px';
+                confetti.style.height = '15px';
+            } else {
+                confetti.style.width = '15px';
+                confetti.style.height = '5px';
+            }
+            
+            confetti.classList.add('confetti-animation');
+            container.appendChild(confetti);
+            
+            // 2 saniye sonra konfetileri temizle
+            setTimeout(() => {
+                confetti.remove();
+            }, 2000);
+        }
+    }
 
     // Örüntü soruları - Harf örüntüleri kaldırıldı, daha kolay örüntüler eklendi
     const questions = [
@@ -396,6 +499,12 @@ document.addEventListener('DOMContentLoaded', () => {
         score = 0;
         updateScore();
         showQuestion(currentQuestion);
+        
+        // Arkaplan müziğini başlat - kullanıcı etkileşimi gerektiği için ilk tıklamada başlatacağız
+        document.body.addEventListener('click', function startMusicOnFirstClick() {
+            startBackgroundMusic();
+            document.body.removeEventListener('click', startMusicOnFirstClick);
+        }, { once: true });
     }
 
     // Soruyu göster
@@ -543,6 +652,12 @@ document.addEventListener('DOMContentLoaded', () => {
             updateScore();
             targetElement.classList.add('bounce');
             
+            // Doğru ses efektini çal
+            playSound(correctSound);
+            
+            // Konfeti efekti göster
+            createConfetti();
+            
             // 2 saniye sonra sonraki soruya geç
             feedbackTimeout = setTimeout(() => {
                 targetElement.classList.remove('bounce');
@@ -552,6 +667,9 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             showMessage('Yanlış! Doğru cevap: ' + correctAnswer + '. ' + questions[currentQuestion].explanation, 'incorrect');
             targetElement.classList.add('shake');
+            
+            // Yanlış ses efektini çal
+            playSound(wrongSound);
             
             // Doğru cevabı göster
             document.querySelectorAll('.option').forEach(el => {

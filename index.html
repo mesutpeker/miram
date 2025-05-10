@@ -40,7 +40,25 @@
             <p>Toplam puanın: <span id="final-score">0</span></p>
             <button id="restart-button">Yeniden Başla</button>
         </div>
+
+        <!-- Ses kontrolleri -->
+        <div class="sound-controls">
+            <button id="toggle-sound" aria-label="Sesi Aç/Kapat">
+                <span id="sound-icon">🔊</span>
+            </button>
+        </div>
     </div>
+    
+    <!-- Ses dosyaları -->
+    <audio id="correct-sound" preload="auto">
+        <source src="sound/correct.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="wrong-sound" preload="auto">
+        <source src="sound/wrong.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="background-music" loop preload="auto">
+        <source src="sound/background.mp3" type="audio/mpeg">
+    </audio>
     
     <script src="script.js"></script>
 </body>
