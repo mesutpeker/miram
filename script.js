@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const optionsContainer = document.getElementById('options-container');
     const resultMessage = document.getElementById('result-message');
     const scoreElement = document.getElementById('score');
-    const questionNumberElement = document.getElementById('questionNumber');
     const gameOverElement = document.getElementById('game-over');
     const finalScoreElement = document.getElementById('final-score');
     const restartButton = document.getElementById('restart-button');
@@ -478,6 +477,78 @@ document.addEventListener('DOMContentLoaded', () => {
             options: ['🍎', 4, 5, 6],
             answer: '🍎',
             explanation: 'Sayı ve elma sırayla tekrar ediyor.'
+        },
+        
+        // YENİ EKLENEN SORULAR
+        {
+            type: 'number',
+            pattern: [1, 4, 7, 10, '?'],
+            options: [12, 13, 14, 15],
+            answer: 13,
+            explanation: 'Her sayı 3 artıyor.'
+        },
+        {
+            type: 'number',
+            pattern: [20, 18, 16, 14, '?'],
+            options: [10, 11, 12, 13],
+            answer: 12,
+            explanation: 'Her sayı 2 azalıyor.'
+        },
+        {
+            type: 'number',
+            pattern: [2, 4, 8, 16, '?'],
+            options: [24, 28, 32, 36],
+            answer: 32,
+            explanation: 'Her sayı 2 katına çıkıyor.'
+        },
+        {
+            type: 'shape',
+            pattern: ['🍓', '🍌', '🍓', '🍌', '🍓', '?'],
+            options: ['🍓', '🍌', '🍊', '🍎'],
+            answer: '🍌',
+            explanation: 'Çilek ve muz sırayla tekrar ediyor.'
+        },
+        {
+            type: 'shape',
+            pattern: ['🌞', '🌞', '🌙', '🌞', '🌞', '?'],
+            options: ['🌙', '🌞', '⭐', '☁️'],
+            answer: '🌙',
+            explanation: 'İki güneşten sonra bir ay geliyor.'
+        },
+        {
+            type: 'shape',
+            pattern: ['🐶', '🐱', '🐭', '🐶', '🐱', '🐭', '?'],
+            options: ['🐶', '🐱', '🐭', '🐰'],
+            answer: '🐶',
+            explanation: 'Köpek, kedi, fare örüntüsü tekrar ediyor.'
+        },
+        {
+            type: 'mixed',
+            pattern: ['🚗', 1, '🚲', 2, '🚗', '?'],
+            options: [1, 2, 3, 4],
+            answer: 3,
+            explanation: 'Araç ve sayı örüntüsü, sayılar sırayla artıyor.'
+        },
+        {
+            type: 'mixed',
+            pattern: [5, '🌟', 10, '🌟', 15, '?'],
+            options: ['🌟', 15, 20, 25],
+            answer: '🌟',
+            explanation: 'Sayı ve yıldız sırayla geliyor, sayılar 5 artıyor.'
+        },
+        {
+            type: 'mixed',
+            pattern: ['🔴', '🔵', '🔴', '🔵', '🔴', '?'],
+            options: ['🔴', '🔵', '🟢', '🟡'],
+            answer: '🔵',
+            explanation: 'Kırmızı ve mavi daire sırayla tekrar ediyor.'
+        },
+        {
+            type: 'number',
+            pattern: [2, 4, 6, 8, 10, '?'],
+            options: [11, 12, 13, 14],
+            answer: 12,
+            explanation: 'Her sayı 2 artıyor.'
         }
     ];
 
@@ -514,9 +585,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Soru numarasını güncelle
-        questionNumberElement.textContent = index + 1;
-        
         // Seçili seçeneği sıfırla
         selectedOption = null;
         questionSlot = null;
